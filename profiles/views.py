@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
 from .serializers import ProfileSerializer
+from django.http import Http404
 
 
 class ProfileList(APIView):
