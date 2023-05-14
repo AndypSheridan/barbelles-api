@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from barbelles_api import IsOwnerOrReadOnly
 from .serializers import ProfileSerializer
 from rest_framework.views import APIView
 from rest_framework import status
