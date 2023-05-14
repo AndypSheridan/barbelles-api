@@ -17,6 +17,7 @@ class ProfileList(APIView):
 class ProfileDetail(APIView):
 
     serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
