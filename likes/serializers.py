@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.db import IntegrityError
 from .models import Like
 
 
@@ -17,5 +18,5 @@ class LikeSerializer(serializers.ModelSerializer):
             return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError(
-                {'detail': 'Duplicate like'}
+                {'detail': 'possible duplicate like'}
                 )
