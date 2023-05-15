@@ -14,11 +14,11 @@ class FollowerList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class FolowerDetail(generics.RetrieveDestroyAPIView):
+class FollowerDetail(generics.RetrieveDestroyAPIView):
     """
     Retrieves or destroys a 'follow'
     Update view not necessary
     """
     serializer_class = FollowerSerializer
-    permission_classes = [permissions.IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = Follower.objects.all()
