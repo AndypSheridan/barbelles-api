@@ -15,7 +15,7 @@ class TutorialList(generics.ListCreateAPIView):
     queryset = Tutorial.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(owener=self.request.user)
+        serializer.save(owner=self.request.user)
 
 
 class TutorialDetail(generics.RetrieveUpdateDestroyAPIView):
