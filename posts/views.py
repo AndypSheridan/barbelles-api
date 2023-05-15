@@ -1,7 +1,9 @@
+from barbelles_api.permissions import IsOwnerOrReadOnly
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import PostSerializer
-from rest_framework import status, permissions
+from django.http import Http404
 from .models import Post
 
 
@@ -31,4 +33,9 @@ class PostList(APIView):
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class PostDetail(APIView):
+    
+    serializer_class = PostSerializer
 
