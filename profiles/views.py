@@ -1,6 +1,7 @@
-from rest_framework import status, generics, permissions
+from rest_framework import generics, permissions, filters
 from barbelles_api.permissions import IsOwnerOrReadOnly
 from .serializers import ProfileSerializer
+from django.db.models import Count
 from django.http import Http404
 from .models import Profile
 
