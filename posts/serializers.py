@@ -4,10 +4,10 @@ from .models import Post
 
 class PostSerializer(serializers.ModelSerializer):
 
-    owner = serializers.ReadOnlyField(source='post.owner.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    profile_id = serializers.ReadOnlyField(source='post.owner.id')
-    profile_image = serializers.ReadOnlyField(source='post.owner.image.url')
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -16,6 +16,8 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'owner', 'title', 'story', 'image', 'created_at', 'updated_at', 'is_owner'
+            'id', 'owner', 'profile_id', 'profile_image',
+            'title', 'story', 'image', 'created_at',
+            'updated_at', 'is_owner'
         ]
 
