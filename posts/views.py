@@ -1,13 +1,16 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import PostSerializer
-from rest_framework import status
+from rest_framework import status, permissions
 from .models import Post
 
 
 class PostList(APIView):
 
     serializer_class = PostSerializer
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
 
     def get(self, request):
         posts = Post.objects.all()
