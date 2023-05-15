@@ -18,7 +18,7 @@ class TutorialList(generics.ListCreateAPIView):
         serializer.save(owener=self.request.user)
 
 
-class TutorialDetailView(generics.RetrieveUpdateDestroyAPIView):
+class TutorialDetail(generics.RetrieveUpdateDestroyAPIView):
 
     serializer_class = TutorialSerializer
     permission_classes = [IsOwnerOrReadOnly]
