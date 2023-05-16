@@ -16,16 +16,17 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Favourite',
+            name='TutorialComment',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('content', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('tutorial', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='favourites', to='tutorials.tutorial')),
+                ('tutorial', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='tutorials.tutorial')),
             ],
             options={
                 'ordering': ['-created_at'],
-                'unique_together': {('owner', 'tutorial')},
             },
         ),
     ]

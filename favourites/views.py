@@ -22,7 +22,7 @@ class FavouriteDetail(generics.RetrieveDestroyAPIView):
     Retrieves or destroys a favourite
     Update view not necessary
     """
-    serializer_class = FavouriteSerializer()
+    serializer_class = FavouriteSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Favourite.objects.all()
 

@@ -14,7 +14,7 @@ class TutorialList(generics.ListCreateAPIView):
     ]
     queryset = Tutorial.objects.annotate(
         favourites_count = Count('favourites', distinct=True),
-        comments_count = Count('comment', distinct=True),
+        tutorial_comments_count = Count('tutorialcomment', distinct=True),
     ).order_by('created_at')
 
     filter_backends = [
@@ -23,7 +23,7 @@ class TutorialList(generics.ListCreateAPIView):
 
     ordering_fields = [
         'favourites_count',
-        'comments_count',
+        'tutorial_comments_count',
         'favourites__created_at',
     ]
 
@@ -37,5 +37,5 @@ class TutorialDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Tutorial.objects.annotate(
         favourites_count = Count('favourites', distinct=True),
-        comments_count = Count('comment', distinct=True),
+        tutorial_comments_count = Count('tutorialcomment', distinct=True),
     ).order_by('created_at')
