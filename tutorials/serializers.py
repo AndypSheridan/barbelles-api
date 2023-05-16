@@ -1,3 +1,4 @@
+from favourites.models import Favourite
 from rest_framework import serializers
 from .models import Tutorial
 
@@ -12,6 +13,15 @@ class TutorialSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
+
+    def get_favourite_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            favourite = Favourite.objects.filter(
+                owner=user, post=obj
+            ).first()
+            return like.id if like else None
+        return None
 
     class Meta:
         model = Tutorial
