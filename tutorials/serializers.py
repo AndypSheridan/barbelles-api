@@ -28,6 +28,7 @@ class TutorialSerializer(serializers.ModelSerializer):
         model = Tutorial
         fields = [
             'id', 'owner', 'profile_id', 'profile_image',
-            'title', 'summary', 'video', 'favourite_id', 'created_at',
-            'updated_at', 'is_owner',
+            'title', 'summary', 'video', 'created_at',
+            'updated_at', 'is_owner', 'favourite_id', 
+            'favourites_count', 'comments_count',
         ]

@@ -12,7 +12,20 @@ class TutorialList(generics.ListCreateAPIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    queryset = Tutorial.objects.all()
+    queryset = Tutorial.objects.annotate(
+        favourites_count = Count('favourites', distinct=True),
+        comments_count = Count('comment', distinct=True),
+    ).order_by('created_at')
+
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+
+    ordering_fields = [
+        'favourites_count',
+        'comments_count',
+        'favourites__created_at',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -22,4 +35,7 @@ class TutorialDetail(generics.RetrieveUpdateDestroyAPIView):
 
     serializer_class = TutorialSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Tutorial.objects.all()
+    queryset = Tutorial.objects.annotate(
+        favourites_count = Count('favourites', distinct=True),
+        comments_count = Count('comment', distinct=True),
+    ).order_by('created_at')
