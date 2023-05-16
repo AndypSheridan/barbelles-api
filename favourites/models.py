@@ -10,7 +10,9 @@ class Favourite(models.Model):
     same tutorial twice
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    tutorial = models.ForeignKey(Tutorial, related_name='favourites', on_delete=models.CASCADE)
+    tutorial = models.ForeignKey(
+        Tutorial, related_name='favourites', on_delete=models.CASCADE
+        )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
