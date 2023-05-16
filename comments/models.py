@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from tutorials.models import Tutorial
 from posts.models import Post
 from django.db import models
 
@@ -10,6 +11,7 @@ class Comment(models.Model):
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
