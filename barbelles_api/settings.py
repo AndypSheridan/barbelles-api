@@ -40,7 +40,7 @@ SECRET_KEY = 'django-insecure-a$%97vl419k$gv83l+q9n2+=cmw8qcspkn$hepwihkepdb9(i8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'barbelles-api.herokuapp.com']
 
 
 # Application definition
