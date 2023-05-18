@@ -16,8 +16,14 @@ class ProfileList(generics.ListAPIView):
         following_count=Count('owner__following', distinct=True)
     ).order_by('-created_at')
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
     ]
+
+    filterset_fields = [
+        'owner__following__followed__profile',
+    ]
+
     ordering_fields = [
         'posts_count',
         'followers_count',
