@@ -21,6 +21,12 @@ class TutorialList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+
+    filterset_fields = [
+        # Get tutorials favourited by specific User
+        'favourites__owner__profile',
     ]
 
     search_fields = [
