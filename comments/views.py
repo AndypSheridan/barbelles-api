@@ -16,6 +16,7 @@ class CommentList(generics.ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend]
 
+    # Show all comments associated with a given post
     filterset_fields = [
         'post',
     ]

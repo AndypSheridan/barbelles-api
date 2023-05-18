@@ -16,6 +16,7 @@ class TutorialCommentList(generics.ListCreateAPIView):
 
     filter_backends = [DjangoFilterBackend]
 
+    # Show all tutorial comments associated with a given tutorial
     filterset_fields = [
         'tutorial',
     ]
