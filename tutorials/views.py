@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, generics, filters
 from barbelles_api.permissions import IsOwnerOrReadOnly
 from .serializers import TutorialSerializer
