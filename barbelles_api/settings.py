@@ -58,15 +58,22 @@ INSTALLED_APPS = [
     'embed_video',
     'rest_framework.authtoken',
     'dj_rest_auth',
-    'tutorials',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
     'profiles',
+    'tutorials',
     'posts',
     'comments',
-    'likes',
+    'tutorialcomments',
     'followers',
     'favourites',
-    'tutorialcomments',
+    'likes',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
