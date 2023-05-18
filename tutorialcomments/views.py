@@ -14,6 +14,12 @@ class TutorialCommentList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+    filter_backends = [DjangoFilterBackend]
+
+    filterset_fields = [
+        'tutorial',
+    ]
+
 
 class TutorialCommentDetail(generics.RetrieveUpdateDestroyAPIView):
 
