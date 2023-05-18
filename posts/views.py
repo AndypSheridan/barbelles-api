@@ -26,6 +26,15 @@ class PostList(generics.ListCreateAPIView):
         DjangoFilterBackend,
     ]
 
+    filterset_fields = [
+        # User feed shows posts from Users being followed
+        'owner__followed__owner__profile',
+        # Get posts liked by current User
+        'likes__owner__profile',
+        # Get posts owned by specific User
+        'owner__profile',
+    ]
+
     search_fields = [
         'owner__username',
         'title',
