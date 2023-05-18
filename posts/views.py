@@ -1,4 +1,5 @@
 from rest_framework import status, permissions, generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from barbelles_api.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
