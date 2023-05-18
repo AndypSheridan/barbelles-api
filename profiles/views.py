@@ -23,6 +23,8 @@ class ProfileList(generics.ListAPIView):
     filterset_fields = [
         #  Retrieve a profile's followers
         'owner__following__followed__profile',
+        #  Retrieve all profiles followed by a profile, given its id
+        'owner__followed__owner__profile'
     ]
 
     ordering_fields = [
