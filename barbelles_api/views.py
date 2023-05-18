@@ -5,5 +5,5 @@ from rest_framework.response import Response
 @api_view()
 def root_route(request):
     return Response({
-        'Message': 'Welcome to the BarBelles API, built with Django Rest Framework'
+        'Message': 'Welcome to the BarBelles API, developed with Django Rest Framework'
         })
