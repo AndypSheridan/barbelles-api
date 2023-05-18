@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from barbelles_api.permissions import IsOwnerOrReadOnly
 from rest_framework import generics, filters
 from .serializers import ProfileSerializer
