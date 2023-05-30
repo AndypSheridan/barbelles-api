@@ -10,6 +10,8 @@ class Profile(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_profile_sigwcy'
     )
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
