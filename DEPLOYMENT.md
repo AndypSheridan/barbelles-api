@@ -151,35 +151,47 @@ I took the following steps to deploy the site to Heroku and have listed any cons
 ### Adding JSON renderer
 
 1. In *settings.py*, add pagination:
+    ```
     REST_FRAMEWORK = { ...,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPaginati on',
     'PAGE_SIZE': 10,
     }
+    ```
     - set JSON renderer if DEV environment not present:
-    `REST_FRAMEWORK = { ...
+    ```
+    REST_FRAMEWORK = { ...
     }
     if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CL ASSES'] = [
-    'restframework.renderers.JSONRenderer' ]`
+    'restframework.renderers.JSONRenderer' ]
+    ```
 
 ### Date and time formatting
 
 1. In *settings.py*: 
-    `REST_FRAMEWORK = { ...
+    ```
+    REST_FRAMEWORK = { ...
     'DATETIME_FORMAT': '%d %b %Y'
-    }`
+    }
+    ```
     - In *comments.serializers.py*, set imports:
-    `...
+    ```
+    ...
     from django.contrib.humanize.templatetags.humanize
-    import naturaltime`
+    import naturaltime
+    ```
     - Set fields in *comment serializer class*:
-    `created_at = serializers.SerializerMethodField()
-    updated_at = serializers.SerializerMethodField()`
-    - set methods undernath fields: 
-    `def get_created_at(self, obj):
+    ```
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
+    ```
+    - set methods underneath fields: 
+    ```
+    def get_created_at(self, obj):
         return naturaltime(obj.created_at)
     def get_updated_at(self, obj):
-        return naturaltime(obj.updated_at)`
+        return naturaltime(obj.updated_at)
+    ```
     - Add, commit and push changes
 
 ## Deploying an App to heroku
@@ -228,27 +240,38 @@ I used **gitpod** for this project:
    _ Install dj_database_url: `pip install dj_database_url`
    _ in **settings.py**:
    _ Import library: `import dj_database_url`
-   _ Separate the Dev and Prod environments: `DATABASES = {
+   _ Separate the Dev and Prod environments: 
+        ```
+       DATABASES = {
             'default': ({
                 'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3',
             } if 'DEV' in os.environ else dj_database_url.parse(
                 os.environ.get('DATABASE_URL')
             ))
         }
+        ```
     * In the **terminal**:
-    Install gunicorn: `pip install gunicorn`    * Create **Procfile**
+    Install gunicorn: `pip install gunicorn`    
+    * Create **Procfile**
     * In Procfile:`release: python manage.py makemigrations && python manage.py migrate
    web: gunicorn drf_api.wsgi`
     - in **settings.py**: set the allowed hosts: `ALLOWED_HOSTS = ['<YOURAPPNAME>.herokuap p.com', 'localhost']`
     - in the **terminal**: `pip install django-cors-headers`
-    - in **settings.py**, add cors headers: `INSTALLED_APPS = [ ...
+    - in **settings.py**, add cors headers: 
+                            ```
+                            INSTALLED_APPS = [ ...
                             'dj_rest_auth.registration',
                             'corsheaders',
                             'profiles',
-                            ... ]`
-    - add to middleware: `MIDDLEWARE = [
+                            ... ]
+                            ```
+    - add to middleware:    
+                            ```
+                            MIDDLEWARE = [
                             'corsheaders.middleware.Cors Middleware',
-                            ... ]`
+                            ... ]
+                            ```
+                        
     - set the ALLOWED_ORIGINS for network request made by the server:
     `if 'CLIENT_ORIGIN' in os.environ: CORS_ALLOWED_ORIGINS =[
         os.environ.get('CLIENT_ORIGIN') ]
