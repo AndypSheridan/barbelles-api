@@ -16,7 +16,7 @@
     -   [**_Add profile id and profile image fields_**](#add-profile-id-and-profile-image-fields)
     -   [**_Add the root route_**](#add-the-root-route)
     -   [**_Adding JSON renderer_**](#adding-json-renderer)
-
+    -   [**_Date and time formatting_**](#date-and-time-formatting)
     -   [**_Deploying an app to Heroku_**](#deploying-an-app-to-heroku)
         -   [**_Create a New External Database_**](#create-a-new-external-database)
         -   [**_Create Heroku App_**](#create-heroku-app)
@@ -155,7 +155,32 @@ I took the following steps to deploy the site to Heroku and have listed any cons
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPaginati on',
     'PAGE_SIZE': 10,
     }
+    - set JSON renderer if DEV environment not present:
+    `REST_FRAMEWORK = { ...
+    }
+    if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CL ASSES'] = [
+    'restframework.renderers.JSONRenderer' ]`
 
+### Date and time formatting
+
+1. In *settings.py*: 
+    `REST_FRAMEWORK = { ...
+    'DATETIME_FORMAT': '%d %b %Y'
+    }`
+    - In *comments.serializers.py*, set imports:
+    `...
+    from django.contrib.humanize.templatetags.humanize
+    import naturaltime`
+    - Set fields in *comment serializer class*:
+    `created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()`
+    - set methods undernath fields: 
+    `def get_created_at(self, obj):
+        return naturaltime(obj.created_at)
+    def get_updated_at(self, obj):
+        return naturaltime(obj.updated_at)`
+    - Add, commit and push changes
 
 ## Deploying an App to heroku
 
