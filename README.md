@@ -28,22 +28,10 @@ The deployed API can be found [here](https://barbelles-api.herokuapp.com/).
 1. [**Features**](#features)
     * [***Admin Page***](#admin-page)
     * [***Posts***](#posts)
-    * [***Social Media and Email Links***](#social-media-and-email-links)
-    * [***Home Page***](#home-page)
-    * [***Books Page***](#books-page)
-    * [***Book Detail Page***](#book-detail-page)
-    * [***Add Book Page***](#book-detail-page)
-    * [***Edit Book Page***](#edit-book-page)
-    * [***Delete Book Page***](#delete-book-page)
-    * [***Authors Page***](#authors-page)
-    * [***Author Detail Page***](#author-detail-page)
-    * [***About Page***](#about-page)
-    * [***Profile Page***](#profile-page)
-    * [***Account Pages***](#account-pages)
-      * [***Sign Up***](#sign-up)
-      * [***Log In***](#log-in)
-      * [***Log Out***](#log-out)
-    * [***Messages***](#messages)
+    * [***Tutorials***](#tutorials)
+    * [***Comments and tutorial comments***](#comments-and-tutorial-comments)
+    * [***Likes and favourites***](#likes-and-favourites)
+    * [***Followers***](#followers)
     * [***Defensive Design***](#defensive-design)
     * [***User Authentication***](#user-authentication)
     * [***404 Page***](#404-page)
@@ -151,15 +139,16 @@ Navigation of the API is chiefly through typed urls. The available pages are lis
 
 ### **Admin Page**
 
-The Admin page was setup almost immediately. This was crucial as it provided an initial means of adding test data and users to the project. Due to the fact I had to wipe my database, I was advised to remove the SQLite3 DB and connect solely to my Postgres database. The screenshot below shows the admin page populated with the most current data at the time of writing.
+The Admin page was setup almost immediately after creating a superuser in the terminal. This was crucial as it provided an initial means of adding test data and users to the project. Due to the fact I had to wipe my database, I was advised to remove the SQLite3 DB and connect solely to my Postgres database. The screenshot below shows the admin page populated with the most current data at the time of writing.
 
 ![Screenshot of admin page](docs/images/api-admin.png)
+
 
 <hr>
 
 ### **Posts**
 ​
-It is possible to view a list of all posts:
+The post list page shows a list of all posts added either in the admin panel or from the front end:
 
 ![Screenshot of posts list](docs/images/api-posts.png)
 
@@ -170,346 +159,56 @@ It is also possible to view the detail of each individual post:
 
 <hr>
 
-### Social Media and Email Links
+### **Tutorials**
 
-The social media and email icons are situated on the right of the Navbar. The Social Media links are functional and will open in a new tab. 
-**NOTE:** There is no actual Social Media Content for this site at the time of writing.
+The tutorial list page shows tutorials uploaded by the site owner or users designated as staff on the backend. The field 'is_staff' in the Profile model can be accessed on the front end, so users for whom 'is_staff' is true, are able to access the 'Share tutorial' link in the front-end navbar.
 
-The email icon opens the default email application with the recipient being a test email address for the site.
+![Tutorials list](docs/images/api-tutorials.png)
 
-![Screenshot of social media and email links](docs/images/social-media-links.png)
+The tutorial detail page shows the details of each individual tutorial uploaded:
 
-
-<hr>
-
-### **Home Page**
-
-The Home Page uses a background chosen to evoke sci-fi imagery and features a human figure standing in front of a Portal, thus linking neatly with the name of the site. It features some simple text outlining the purpose of the site as well as a search bar, which logged-in Users can use to search for content:
-
-![Screenshot of home page](docs/images/sfp-home-page.png)
-
-The Home Page is responsive and works well on smaller devices. This is how it looks on an iPhone SE:
-
-![Screenshot of small-screen home page](docs/images/sfp-home-small.png)
-
-Users can search for books using the search function:
-
-![Screenshot of home page search](docs/images/sfp-search.png)
-
-<hr>
-
-### **Books Page**
-
-The Books Page features a background image of stars which complements the overall colour palette of the site. It consists of a 'Submit Review' button and a paginated list of book reviews made by other Users or Admin. Each review is a Bootstrap card displaying the title, author and an image of the book. If no image is uploaded by the User, it is assigned a default image showing 'Image not available'. This can always be assigned by Admin or the User at a later time. The card also displays a snippet of the synopsis, a User rating, who posted the review the number of likes and comments. 
-
-There are a maximum of six reviews per screen, the User can click 'next' or 'previous' to navigate between the reviews:
-
-![Screenshot of book page](docs/images/books1.png)
-![Screenshot of book page](docs/images/books2.png)
-
-The Books page is responsive on smaller screens and the reviews will stack so they can be scrolled. The following screenshot is from an iPhone SE:
-
-![Screenshot of small-screen book page](docs/images/books-small.png)
-
-Assuming the User is logged in, they are able to edit or delete reviews they have posted directly from the Books Page:
-
-![Screenshot of edit and delete book page](docs/images/books-buttons.png)
-
-The User can click on any of the book titles or images to go to the Book Detail page and read that particular review.
-
-<hr>
-
-### **Book Detail Page**
-
-Upon clicking on a review in the Books Page, the User is taken to the Book Detail page:
-
-![Screenshot of book detail page](docs/images/book-detail1.png)
-![Screenshot of book detail page](docs/images/book-detail-2.png)
-
-This displays a larger image of the book - if uploaded, the book title, author, review rating and synopsis. The User review is situated below and there is also the opportunity for a User to edit or delete their own reviews. Users can also like or unlike reviews as well as see the number of both:
-
-![Screenshot of book detail edit/delete/likes/comments page](docs/images/book-detail-likes.png)
-
-***Likes***
-
-The like button has two states: a [Font Awesome](https://fontawesome.com/) heart outline if the user has not liked the review:
-<br>
-![Screenshot of unliked](docs/images/book-likes-before.png)
-
-or a solid heart if the user has liked it:
-
-![Screenshot of liked](docs/images/book-likes-after.png)
-
-The User can like or unlike a review.
-
-<hr>
-
-### **Add Book Page**
-
-If a User clicks 'Submit a Review' they are taken to the Add Book Page:
-
-![Screenshot of Add Book Page 1](docs/images/add-book-1.png)
-![Screenshot of Add Book Page 2](docs/images/add-book-2.png)
-
-The User must provide information for all fields in the form other than providing an image, rating and sub-genre. There are default values for the latter three but the User can still alter them.
-
-Any mandatory form fields that are left blank will result in the following prompt:
-
-![Screenshot of Add Book Form errors](docs/images/add-book-form-errors.png)
-
-Upon successful submission of the form, the User is redirected to the Books Page and a message is displayed.
+![Tutorial detail page](docs/images/api-tutorial-detail.png)
 
 
 <hr>
 
-***Comments***
+### **Comments and tutorial comments**
 
-Comments can be viewed below the reviews. This displays the User posting the comment, the date and time as well as the comment itself:
+Users can add comments to both posts and tutorials. Comments are added to posts and tutorial comments are added to tutorials. On the front-end, these are added on the post or tutorial detail page. Lists of each can be seen in the screenshots below:
 
-![Screenshot of book detail page comments](docs/images/book-detail-comments.png)
+![Screenshot of comments list](docs/images/api-comments.png)
+![Screenshot of tutorial comments list](docs/images/api-tutorial-comments.png)
 
-**NOTE** All comments must be approved by the Admin in order to filter out objectionable content.
+Details of both individual comments and tutorial comments can be viewed. See below:
 
-In order to post a comment, the User must complete the comment form at the bottom of the page:
+![Screenshot of comment detail page](docs/images/api-comment-detail.png)
+![Screenshot of tutorial comment detail page](docs/images/api-tutorial-comment-detail.png)
 
-![Screenshot of book detail page comment form](docs/images/book-detail-comments-before.png)
 
-Upon submission of the form, they are presented with the following message:
+### **Likes and favourites**
 
-![Screenshot of book detail page comment submission](docs/images/book-detail-comment-after.png)
+Likes and favourites are similar in terms of functionality; likes can be added to posts so a user can like or unlike a post on the front end. A filter allows for liked posts to be accessed through a link in the NavBar. Tutorials can be 'favourited' or 'unfavourited' and can also be accessed on the front-end through the favourites link in the navbar. On the back-end, lists of boths are rendered as below:
 
-When the comment has been approved by the Admin, they will appear with the other comments in the order they were posted.
+![Screenshot of likes list](docs/images/api-likes.png)
+![Screenshot of favourites list](docs/images/api-favourites.png)
 
-<hr>
+Details of each individual like or favourite can be seen in the screenshots below:
 
-### Edit Book Page
-
-If the User clicks edit on the Books or Book Detail page then they are directed to the edit book page:
-
-![Screenshot of edit book](docs/images/book-edit-1.png)
-![Screenshot of edit book](docs/images/book-edit-2.png)
-
-A User is only allowed to edit or delete an admin-approved review that they have posted. If these conditions are met, the edit book page will display a form pre-populated with the existing data from the initial review. This can be edited or updated. The primary reasons for doing so would be to edit typos pr perhaps add an image they couldn't find before.
-
-Upon submission of the form, the User will be redirected to the Books page and shown a success message:
-
-![Screenshot of successful edit book](docs/images/book-edit-success.png)
-
-#### **Responsiveness**
-
-The edit-book page is responsive and scales well on smaller devices. The screenshots below show how it renders on an iPhone SE:
-
-![Screenshot of edit book small screen](docs/images/book-edit-smaller-1.png)
-![Screenshot of edit book small screen](docs/images/book-edit-smaller-2.png)
-
-<hr>
-
-
-### Delete Book Page
-
-If the user chooses to delete one of their book reviews, they are directed to the following page:
-
-![Screenshot of delete book](docs/images/delete-book.png)
-
-There are only two options: the User can click cancel and return to the previous page, or confirm delete of the review and are redirected to the books page where a message displays that the message has been successfully deleted. 
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of edit book page small screen](docs/images/delete-book-small.png)
-
-<hr>
-
-
-### Authors Page
-
-If the User navigates to the Authors Page they can view a list of the Featured Authors:
-
-![Screenshot of authors page 1](docs/images/authors1.png)
-![Screenshot of authors page 2](docs/images/authors2.png)
-
-This is an ever-growing list which will be to added by the admin over time. The layout is similar to the books page, with a paginated list of authors displayed. Each card displays the name, date of birth, famous works and a snippet of the author's bio. If no image is available, there is a default image displayed. In this instance, it is just for test purposes that there is no image of Isaac Asimov, as there were many available. This feature is reserved for more obscure or emerging artists for whom there might not be an image. The User can click on the image, author name or 'view full bio' link to navigate to the Author Detail Page.
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of authors page small screen](docs/images/authors-small.png)
-
-<hr>
-
-
-### Author Detail Page
-
-The aim of this page is to introduce the User to new authors who might appeal to fans of the genre. These will include established authors and luminaries of the science fiction field or perhaps newer, emerging writers. For the purpose of consistency Author Detail Page is similar to the Book Detail Page. The same background image fits the sci-fi theme and the layout of the page features a large image of the author, their name, date of birth, famous works and a bio:
-
-![Screenshot of author detail page 1](docs/images/author-det-1.png)
-![Screenshot of author detail page 2](docs/images/author-det-2.png)
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of author detail page small screen](docs/images/author-det-small.png)
-
-<hr>
-
-### About Page
-
-The About page displays information about the site. The text welcomes the User to the site and explains what they can do as a registered User. There are links to different areas of the site and a reminder to respect other Users in the community:
-
-![Screenshot of about page ](docs/images/about.png)
-
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of about page small screen](docs/images/about-small.png)
-
-<hr>
-
-
-### Profile Page
-
-When the User registers a new account, a profile is automatically created for them to edit in their own time. The purpose of this is so that the User can register and immediately start using the site rather than have to waste time completing a profile they may not wish to use. If the User wishes to, they can click on the Profile icon in the Navbar to view their Profile card:
-
-![Screenshot of Profile page](docs/images/profile-card.png)
-
-If the User clicks the 'Edit Profile' button, it will reveal a form which the User can use to update their details:
-
-![Screenshot of Profile page edit form](docs/images/profile-form.png)
-
-Upon clicking the 'Update' button, the form is submitted and the page reloads with the new details and a success message:
-
-![Screenshot of profile page success](docs/images/profile-form-success.png)
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of profile page card small screen](docs/images/profile-card-small.png)
-![Screenshot of profile page form small screen](docs/images/profile-form-small.png)
-
-<hr>
-
-
-## Allauth Account Pages
-
-All Account Pages use the same background, again evoking sci-fi imagery. The image is a swirling, nebulous portal which again complements the colour palette used site-wide.
-
-#### Sign Up
-
-I used allauth to handle the account pages for the project. In order to register, the User must complete the form on the Signup Page:
-
-![Screenshot of signup page](docs/images/signup.png)
-
-Once the User has successfully registered, they will be logged in and taken to the Home Page. The form will display error messages in several circumstances:
-
-* The User chooses a Username that is already taken
-* The password is not long enough
-* The password is too similar to the username or too common
-* The passwords do not match
-
-See the example below: 
-
-![Screenshot of signup page errors](docs/images/signup-errors.png)
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of signup small screen](docs/images/signup-small.png)
-
-<hr>
-
-#### Log In
-
-Existing Users can log in by clicking the Log In button on the Home Page. This will bring them to the Log In Page:
-
-![Screenshot of log in page](docs/images/login-page.png)
-
-If the log in details are not valid, an error message is displayed. For example: 
-
-![Screenshot of log in page errors](docs/images/login-error-message.png)
-
-#### **Responsiveness**
-
-Here is how the page displays on an iPhone SE:
-
-![Screenshot of login small screen](docs/images/login-small.png)
-![Screenshot of login error small screen](docs/images/login-error-small.png)
-
-<hr>
-
-
-#### Log Out
-
-To log out of the site and end the current session, the User can navigate to Log Out in the Navbar. This will direct them to the Log Out Page:
-
-![Screenshot of logout page](docs/images/logout.png)
-
-The User can confirm by clicking the Log Out button or click the cancel button to return to the previous page. If the User chooses to log out, they are redirected to the Home Page and a success message informs them they have been logged out:
-
-![Screenshot of home screen logout success](docs/images/home-logout-success.png)
-
-#### **Responsiveness**
-
-Here is how the pages display on an iPhone SE:
-
-![Screenshot of logout small screen](docs/images/logout-small.png)
-![Screenshot of logout success small screen](docs/images/home-logout-success-small.png)
+![Screenshot of likes detail](docs/images/api-like-detail.png)
+![Screenshot of favourites detail](docs/images/api-favourites-detail.png)
 
 
 <hr>
 
-## Links and Buttons
+### **Followers**
 
-### **Links**
+The API provides the functionality for users on the front-end to follow or un-follow each other. Effectively a follow is created for a 'follow' and destroyed for an 'un-follow'. Each follow can be viewed on the back-end as below:
 
-I used two different effects for the links in the project. One is a custom CSS effect where a white box-shadow slides from left to right across the link. The feature can be seen on the [site](https://sci-fi-portal.herokuapp.com/)
+![Screenshot of followers list](docs/images/api-followers.png)
 
-The second effect present is another custom CSS effect which changes the text-colour when it is hovered over. Generally there is no text decoration for the links as I felt the underline did not work well with either font.
+The detail of each follow can be viewed in more detail by adding its id to the URL and is rendered as below:
 
-### **Buttons**
-
-I used Bootstrap buttons across the project. The button colours follow the colour scheme of the site, other than the 'edit' and 'delete' book buttons which use the default Bootstrap primary and danger colours in order to stand out.
-
-
-<hr>
-
-## **Messages**
-
-User feedback is provided in the shape of success messages with the aim of providing a more involved User Experience. These messages are dismissible by clicking the 'x' and will be displayed in the following situations:
-
-**Successful Login**
-
-![Successful login message](docs/images/login-success.png)
-
-**Successful Update Profile**
-
-![Successful update profile](docs/images/profile-success.png)
-
-**Successful Add Book Review**
-
-![Successful add book message](docs/images/add-book-success.png)
-
-**Successful Edit Book Review**
-
-![Successful edit review message](docs/images/edit-success.png)
-
-**Successful Delete Book Review**
-
-![Successful login message](docs/images/delete-success.png)
-
-**Successful Comment Submission**
-
-![Successful Comment Submission message](docs/images/comment-success.png)
-
-**Successful Logout**
-
-![Successful logout message](docs/images/logout-success.png)
+![Screenshot of follow detail](docs/images/api-follower-detail.png)
 
 
 <hr>
