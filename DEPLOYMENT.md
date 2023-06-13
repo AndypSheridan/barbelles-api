@@ -115,7 +115,7 @@ I used **gitpod** for this project:
     - in the **terminal**: `pip install django-cors-headers`
     - in **settings.py**, add cors headers: `INSTALLED_APPS = [ ...
                             'dj_rest_auth.registration',
-                            *'corsheaders',*
+                            'corsheaders',
                             'profiles',
                             ... ]`
     - add to middleware: `MIDDLEWARE = [
@@ -128,120 +128,41 @@ I used **gitpod** for this project:
         CORS_ALLOWED_ORIGIN_RE GEXES = [
         r"^https://.*\.gitpod\.io$", ]`
 
+    - Allow *cookies*: `CORS_ALLOW_CREDENTIALS = True`
+
+    - Allow front and backend sites to be deployed to different platforms: `JWT_AUTH_SAMESITE = 'None'`
+
+1. Set the remaining **environment variables**:
+    - in **env.py**: `os.environ['SECRET_KEY'] = 'CreateRandomValue'`
+    - in **settings.py**, replace insecure key with the environment variable: 
+    `SECRET_KEY = os.environ.get('SECRET_KEY')`
+    - replace the DEBUG setting to be only true in Dev and False modes: `DEBUG = 'DEV' in os.environ`
+
 1. In **Heroku**:
     - Add Secret Key to Config Vars: **SECRET_KEY (value:) "Made up secret key"**
+    - Add `DISABLE_COLLECTSTATIC = 1` config var
     - For this project it was also necessary to add **PORT 8000**
 
-Install and configure extra libraries:
+1. In the **terminal**: `pip freeze > requirements.txt` and push changes to GitHub
 
-1. Reference env.py in settings.py:
 
-    - Below 'from pathlib import Path':
-        - `import os`
-          `import dj_database_url`
-          `if os.path.isfile("env.py"):`
-          `    import env`
-    - Remove insecure secret key and replace (_links to the SECRET_KEY variable on Heroku_):
-        - `SECRET_KEY = os.environ.get('SECRET_KEY')`
-
-1. Comment Out Old Databases Section and **ADD NEW** (_links to DATABASE_URL_ variable on Heroku):
-
-    - `DATABASES = {`
-      `'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))`
-
-1. Save all Files and Make Migrations:
-
-    - `python3 manage.py makemigrations`
-    - `python3 manage.py migrate`
-
-### Store Static and Media Files on Cloudinary
-
-These steps assume you have a Cloudinary account and are logged in.
-
-1.  In **Cloudinary**:
-
-    -   Copy **CLOUDINARY_URL** from Cloudinary Dashboard
-
-1.  In **env.py**:
-
-    -   Add **CLOUDINARY_URL** to env.py **NOTE:** Paste in correct section of the link:
-
-    `os.environ["CLOUDINARY_URL"] = "cloudinary://*********"`
+### Connect the project's github repo to Heroku
 
 1.  In **Heroku**:
-
-    -   Add Cloudinary URL to Heroku Config Vars (settings tab) **NOTE:** Paste in correct section of the link: CLOUDINARY_URL, cloudinary://\***\*\*\*\***
-    -   Add **DISABLE_COLLECTSTATIC** to Heroku Config Vars (_this will be removed for deployment_): DISABLE_COLLECTSTATIC, 1
-
-1.  In **settings.py**:
-
-        - Add Cloudinary Libraries to installed apps **NOTE: Order is important!!!**:
-
-        `     INSTALLED_APPS = [
-             ...,
-             **'cloudinary_storage'**,
-             'django.contrib.staticfiles',
-             'cloudinary',
-             ...,
-         ]
-
-    `
-
-        - Tell Django to use Cloudinary to store media and static files by placing this snippet under the comments indicated below:
-
-        ` # Static files (CSS, JavaScript, Images) # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-             STATIC_URL = '/static/'
-             STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-             STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
-             STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-             MEDIA_URL = '/media/'
-             DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-        `
-
-        -   Under the line with BASE_DIR, link to templates directory in Heroku via settings.py:
-
-            - `TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')`
-
-        -   Within TEMPLATES array, add 'DIRS':[TEMPLATES_DIR] like the below example:
-            `
-            TEMPLATES = [
-            {
-            …,
-            'DIRS': [TEMPLATES_DIR],
-            …,
-                         },
-                     },
-                 ]
-            `
-        -   Add allowed hosts to settings.py:
-
-        `ALLOWED_HOSTS = ["PROJECT_NAME.herokuapp.com", "localhost"]`
-
-### Final Steps
-
-1.  In gitpod:
-
-    -   Create Procfile at the top level of the file structure and insert the following:
-        `web: gunicorn PROJECT_NAME.wsgi` (In this instance, the project name was **sfportal**)
-
-    -   Create _media, static and templates_ folders in root directory
+    - Select the deployment method, e.g. *GitHub*
+    - Select the project repo name from GitHub and then connect
+    - In the deploy section choose *master branch*
+    - Click *deploy branch*
+    - Open app to view
 
 1.  In the **terminal**:
 
     -   **SAVE ALL FILES** Make an initial commit and push the code to the GitHub Repository.
 
     `git add .
-git commit -m "Initial deployment"
-git push`
+    git commit -m "Initial deployment"
+    git push`
 
-1.  In **Heroku** for use via the console.
-
-        * Deploy content manually through Heroku. In this instance the deployment method was Github on the main branch
-
-    Log in to Heroku via the console and enter your details.
 
 ### Cloning on a Local machine or Via Gitpod Terminal
 
