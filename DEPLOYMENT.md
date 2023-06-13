@@ -10,10 +10,11 @@
     -   [**_Initial Deployment_**](#initial-deployment)
     -   [**_Create Repository_**](#create-repository)
     -   [**_Setting up the Workspace_**](#setting-up-the-workspace-to-be-done-locally-via-the-console-of-your-chosen-editor)
+    -   [**_Using JWT Tokens_**](#using-jwt-tokens)
     -   [**_Deploying an app to Heroku_**](#deploying-an-app-to-heroku)
         -   [**_Create a New External Database_**](#create-a-new-external-database)
         -   [**_Create Heroku App_**](#create-heroku-app)
-        -   [**_Attach the Database_**](#attach-the-database)
+        -   [**_Connect to the Database_**](#connect-to-the-database)
         -   [**_Preparing Environment and settings.py File_**](#preparing-environment-and-settings.py-file)
         -   [**_Store Static and Media Files on Cloudinary_**](#store-static-and-media-files-on-cloudinary)
         -   [**_Final Steps_**](#final-steps)
@@ -22,6 +23,7 @@
 ## Initial Deployment
 
 I took the following steps to deploy the site to Heroku and have listed any console commands required to initiate it. My aim was to ensure this process was completed as early as possible in the project, to avoid complications or issues as it progressed.
+
 
 ### Create repository:
 
@@ -53,6 +55,15 @@ I took the following steps to deploy the site to Heroku and have listed any cons
     - `python3 manage.py migrate`
 1. Test server works locally:
     - `python3 manage.py runserver` (This should display the default Django success page)
+
+### Using JWT tokens
+
+1. In the *terminal*: `pip install `pip install dj-rest-auth==2.1.9`
+    - in *settings.py*: `INSTALLED_APPS = [ ...
+                        'django_filters',
+                        'rest_framework.authtoken', 'dj_rest_auth',
+                        ‘profiles’,
+                        ... ]`
 
 ## Deploying an App to heroku
 
@@ -91,7 +102,7 @@ The below works on the assumption that you already have an account with [Heroku]
     - left box under config vars (variable KEY) = SECRET_KEY
     - right box under config vars (variable VALUE) = Value copied from settings.py in project.
 
-### Connect to the the Database
+### Connect to the Database
 
 I used **gitpod** for this project:
 
