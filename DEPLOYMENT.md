@@ -121,6 +121,13 @@ I used **gitpod** for this project:
     - add to middleware: `MIDDLEWARE = [
                             'corsheaders.middleware.Cors Middleware',
                             ... ]`
+    - set the ALLOWED_ORIGINS for network request made by the server:
+    `if 'CLIENT_ORIGIN' in os.environ: CORS_ALLOWED_ORIGINS =[
+        os.environ.get('CLIENT_ORIGIN') ]
+    else:
+        CORS_ALLOWED_ORIGIN_RE GEXES = [
+        r"^https://.*\.gitpod\.io$", ]`
+
 1. In **Heroku**:
     - Add Secret Key to Config Vars: **SECRET_KEY (value:) "Made up secret key"**
     - For this project it was also necessary to add **PORT 8000**
