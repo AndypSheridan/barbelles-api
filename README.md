@@ -156,6 +156,8 @@ It is also possible to view the detail of each individual post:
 
 ![Screenshot of post detail](docs/images/api-post-detail.png)
 
+Posts can be edited, updated or deleted on the front-end or via the admin panel.
+
 
 <hr>
 
@@ -168,6 +170,8 @@ The tutorial list page shows tutorials uploaded by the site owner or users desig
 The tutorial detail page shows the details of each individual tutorial uploaded:
 
 ![Tutorial detail page](docs/images/api-tutorial-detail.png)
+
+Tutorials can be edited, updated or deleted on the front-end or via the admin panel only by specific users.
 
 
 <hr>
@@ -184,10 +188,12 @@ Details of both individual comments and tutorial comments can be viewed. See bel
 ![Screenshot of comment detail page](docs/images/api-comment-detail.png)
 ![Screenshot of tutorial comment detail page](docs/images/api-tutorial-comment-detail.png)
 
+Users can create, edit or delete their own comments on the front-end.
+
 
 ### **Likes and favourites**
 
-Likes and favourites are similar in terms of functionality; likes can be added to posts so a user can like or unlike a post on the front end. A filter allows for liked posts to be accessed through a link in the NavBar. Tutorials can be 'favourited' or 'unfavourited' and can also be accessed on the front-end through the favourites link in the navbar. On the back-end, lists of boths are rendered as below:
+Likes and favourites are similar in terms of functionality; likes can be added to posts so a user can like or unlike a post on the front end. A filter allows for liked posts to be accessed through a link in the NavBar. Tutorials can be 'favourited' or 'unfavourited' and can also be accessed on the front-end through the favourites link in the navbar. On the back-end, lists of both are rendered as below:
 
 ![Screenshot of likes list](docs/images/api-likes.png)
 ![Screenshot of favourites list](docs/images/api-favourites.png)
@@ -214,8 +220,11 @@ The detail of each follow can be viewed in more detail by adding its id to the U
 <hr>
 
 ## **Defensive Design**
+### **Permissions**
 
-In order to avoid the User unintentionally deleting their own content, some simple defensive design programming was implemented. If a User is logged in and clicks delete on one of their reviews, they will be prompted for confirmation they want to do so here:
+Permission checks are run through the use of the IsAuthenticated class which will grant or deny access to different parts of the API. In the case of this API, it essentially means users cannot edit or delete posts, comments, tutorials, likes or followers that are not their own. This adds a fairly robust level of security and will return a '401 Unauthorized' or '403 Forbidden' response.
+
+The impact on the front-end is such that users with malicious intent will not be able to access content which they shouldn't.
 
 ![Screenshot of delete page](docs/images/delete-book.png)
 
