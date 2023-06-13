@@ -27,7 +27,7 @@ The deployed API can be found [here](https://barbelles-api.herokuapp.com/).
 1. [**Agile Development**](#agile-development)
 1. [**Features**](#features)
     * [***Admin Page***](#admin-page)
-    * [***Navbar***](#navbar)
+    * [***Posts***](#posts)
     * [***Social Media and Email Links***](#social-media-and-email-links)
     * [***Home Page***](#home-page)
     * [***Books Page***](#books-page)
@@ -147,28 +147,25 @@ I used Github projects to create and track issues and User Stories. The Agile pr
 
 ## **API Navigation**
 
+Navigation of the API is chiefly through typed urls. The available pages are listed below.
+
 ### **Admin Page**
 
-The Admin page was setup almost immediately. This was crucial as it provided the initial means of adding test data and users to the project.
+The Admin page was setup almost immediately. This was crucial as it provided an initial means of adding test data and users to the project. Due to the fact I had to wipe my database, I was advised to remove the SQLite3 DB and connect solely to my Postgres database. The screenshot below shows the admin page populated with the most current data at the time of writing.
 
-![Screenshot of admin page](docs/images/admin.png)
+![Screenshot of admin page](docs/images/api-admin.png)
 
 <hr>
 
-### **Navbar**
+### **Posts**
 ​
-The Navbar is a bootstrap component which allows a registered User to navigate their way around the site with ease. When logged out, it displays just the SF|Portal logo and social media / email links:
+It is possible to view a list of all posts:
 
-![Screenshot of navbar](docs/images/navbar-logged-out.png)
+![Screenshot of posts list](docs/images/api-posts.png)
 
-When the User is logged in, it offers navigation to the profile, books, authors and about pages:
+It is also possible to view the detail of each individual post:
 
-![Screenshot of navbar](docs/images/navbar-logged-in.png)
-
-To display properly on smaller screens, I used a Bootstrap hamburger menu:
-
-![Screenshot of small-screen navbar](docs/images/navbar-small-screen-before.png)
-![Screenshot of small-screen navbar menu](docs/images/navbar-small-screen.png)
+![Screenshot of post detail](docs/images/api-post-detail.png)
 
 
 <hr>
