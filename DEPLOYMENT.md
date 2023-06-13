@@ -11,6 +11,12 @@
     -   [**_Create Repository_**](#create-repository)
     -   [**_Setting up the Workspace_**](#setting-up-the-workspace-to-be-done-locally-via-the-console-of-your-chosen-editor)
     -   [**_Using JWT Tokens_**](#using-jwt-tokens)
+    -   [**_Adding feature to register users_**](#adding-feature-to-register-users)
+    -   [**_Adding JWT Tokens functionality_**](#add-jwt-tokens-functionality)
+    -   [**_Add profile id and profile image fields_**](#add-profile-id-and-profile-image-fields)
+    -   [**_Add the root route_**](#add-the-root-route)
+    -   [**_Adding JSON renderer_**](#adding-json-renderer)
+
     -   [**_Deploying an app to Heroku_**](#deploying-an-app-to-heroku)
         -   [**_Create a New External Database_**](#create-a-new-external-database)
         -   [**_Create Heroku App_**](#create-heroku-app)
@@ -64,6 +70,92 @@ I took the following steps to deploy the site to Heroku and have listed any cons
                         'rest_framework.authtoken', 'dj_rest_auth',
                         ‘profiles’,
                         ... ]`
+    - in main *urls.py* file:
+    `urlpatterns = [ ...,
+        path('api-auth/', include('rest_framework.urls')),
+        path('dj-rest-auth/', include('dj_rest_auth.urls')),
+        path('', include('profiles.urls')), ....,]`
+    - in the *terminal*, migrate the database: `python manage.py migrate`
+
+### Adding feature to register users
+
+1. In the *terminal*, install Django all-Auth: `pip install 'dj-rest-auth[with_social]'`
+    - In *settings.py*, add relevant apps to installed apps:
+    `INSTALLED_APPS = [ ...,
+        'dj_rest_auth',
+        'django.contrib.sites', 'allauth',
+        'allauth.account', 'allauth.socialaccount', 'dj_rest_auth.registration',
+        'profiles',
+        ..., ]`
+    - Add site id value under installed apps list: `SITE_ID = 1`
+    - In *main urls.py file*, add registration urls to the url patterns list:
+    `urlpatterns = [ ...,
+        path('dj-rest-auth/', include('dj_rest_auth.urls')),
+        path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+        path('', include('profiles.urls')), ...,
+        ]`
+
+### Adding JWT Tokens functionality
+
+1. In the *terminal*: `pip install djangorestframework-simplejwt==4.7.2`
+    - In *env.py*, differentiate between Dev and Prod mode: `os.environ['DEV'] = 1`
+    - In *settings.py*:
+    `REST_FRAMEWORK = { 'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthenticatio n'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )] }`
+    - enable token authentication: `REST_USE_JWT = True`
+    - `JWT_AUTH_COOKIE = 'my-app-auth'`
+    Declare cookie names for access and refresh tokens: 
+    `JWT_AUTH_SECURE = True JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'`
+
+
+### Add profile id and profile image fields
+
+1. Create a new *serializers.py file*: e.g. `barbelles_api / serializers.py`
+    - in the new serializers.py file, import: 
+    `from dj_rest_auth.serializers import UserDetailsSerializer from rest_framework import serializers`
+    - create profile_id and profile_image fields: 
+    `class CurrentUserSerializer(UserDetailsSerializer): 
+        profile_id = serializers.ReadOnlyField(source='profile.id') 
+        profile_image = serializers.ReadOnlyField(source='profile.image.url') 
+
+    class Meta(UserDetailsSerializer.Meta):
+        fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')`
+    - overwrite the default serializer **place under JWT_AUTH_REFRESH_COOKIE**: 
+    `REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'}`
+
+    - In the *terminal*:
+    - `python manage.py migrate`
+    - `pip freeze > requirements.txt`
+    - Add, commit and push
+
+### Add the root route
+
+1. In the IDE / terminal, create a *views.py* file: e.g. `barbelles_api / views`
+    - in the new *views.py* file, import: 
+    `from rest_framework.decorators import api_view 
+     from rest_framework.response import Response`
+    - create root route and return custom message: 
+    `@api_view()
+    def root_route(request):
+    return Response({"message": "Welcome to my django rest framework API!"})`
+    - set imports: `...
+                    from .views import root_route`
+    - add *url patterns* to list: 
+    `urlpatterns = [ ...,
+    path('', root_route)
+    ]`
+
+### Adding JSON renderer
+
+1. In *settings.py*, add pagination:
+    REST_FRAMEWORK = { ...,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPaginati on',
+    'PAGE_SIZE': 10,
+    }
+
 
 ## Deploying an App to heroku
 
