@@ -153,7 +153,7 @@ I took the following steps to deploy the site to Heroku and have listed any cons
 1. In *settings.py*, add pagination:
     ```
     REST_FRAMEWORK = { ...,
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPaginati on',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     }
     ```
