@@ -119,38 +119,19 @@ No wireframes were required for the API. Wireframes for the front-end site can b
 
 I used [DrawSQL](https://drawsql.app)​ to help visualise my database tables. See the image below:
 
-![Database Schema]()
-
-Unfortunately, the site did not provide adequate field type values but it was instrumental in helping create the Entity Relationship Diagram.
-
-The exact models used in the project can be viewed [here](docs/data-model/sfp-data-models.png).
+![Database Schema](docs/schema/barbelles-api-erd.png)
 
 <hr>
 
 ### **Colour Scheme:**
 ​
-After researching various options for this project, I opted for the colour scheme below:
-
-![Colour Palette](docs/images/colour-palette.png)
-
-The contrast scores for all the colours used across the project can be seen below. I used [contrast-grid](https://contrast-grid.eightshapes.com/) to generate this chart.
-
-![Colour Palette Contrast Scores](docs/images/contrast-checker.png)
+No color scheme was required for this project. The color scheme for the front-end can be found in the Readme file for that project.
 
 <hr>​
 
 #### **Typography**
 ​
-I researched a number of fonts that would be in keeping with the sci-fi theme of the site. I used [Font Pair](https://www.fontpair.co/inspiration/space-mono-roboto-mono) to try a number of options and eventually chose the following:
-
-* [Space Mono](https://fonts.google.com/specimen/Space+Mono)
-Chosen for its sci-fi-esque appearance.
-
-
-* [Roboto](https://fonts.google.com/specimen/Roboto)
-Chosen for its softer edges to counter the harsher appearance of Space Mono.
-
-The two are used evenly throughout the site.
+Typography was not required for this project. The typography for the front-end can be found in the Readme file for that project.
 
 ​<hr>
 
