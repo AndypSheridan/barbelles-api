@@ -1,15 +1,19 @@
 # **BarBelles**
 ## **API Overview**
 
-The BarBelles API has been developed using the Django Rest Framework in order to serve as the back-end component to Barbelles, an online fitness community for women. The front-end, developed using React, provides women with a safe and inclusive space to share their own personal fitness journeys as well as the opportunity to learn and interact with other in the community. Users can read posts by others, create, update and delete their own posts as well as follow other users. There is also the facility to add, edit or delete comments. Users can learn from video Tutorials added by the site owner, Kate Ross. The BarBelles API provides the functionality for all of these interactions, connecting to an external Postgresql database to store images, profile data, videos, comments and followers.
+The BarBelles API has been developed using the Django Rest Framework in order to serve as the back-end component to Barbelles, an online fitness community for women. The front-end, developed using ReactJS, aims to provide women with a safe and inclusive space to share their own personal fitness journeys as well as the opportunity to learn and interact with other in the community. Users can read posts by others, create, update and delete their own posts as well as follow other users. There is also the facility to add, view, edit or delete comments. Users can learn from video Tutorials added by the site owner, Kate Ross; only users with staff privileges can create, edit or delete tutorials but users can 'favourite' them and add comments. The BarBelles API provides the functionality for all of these interactions, connecting to an external Postgresql database to store images, profile data, videos, comments and followers.
 
-The entire basis of this project is to facilitate a smooth, seamless user experience on the front-end.
+The entire basis of this API is to facilitate and support a smooth, seamless user experience on the front-end.
 
 <hr>
 
 ![Screenshot of BarBelles API](docs/images/api-home.png)
 
-The deployed API can be found [here](https://barbelles-api.herokuapp.com/).
+The deployed API can be viewed [here](https://barbelles-api.herokuapp.com/)
+
+The deployed front-end can be viewed [here](https://barbelles.herokuapp.com/)
+
+The repository for the front-end can be viewed [here](https://github.com/AndypSheridan/barbelles)
 
 <hr>
 
@@ -66,7 +70,14 @@ The deployed API can be found [here](https://barbelles-api.herokuapp.com/).
 
 ### **User Stories:**
 
+User stories for the project as a whole can be found [here](https://github.com/users/AndypSheridan/projects/3/views/1)
+
+### User stories specific to this API are listed below:
+
+Further details concerning the breakdown of these into Epics can be found in the [Agile Methodology](AGILE.md) file.
+
 #### **Site User**
+
 As a **Registered** user I can: 
 * *sign in* in order to *view site content and interact with the community*.
 * *navigate the site* easily in order to *view its content and interact with others*.
@@ -82,10 +93,8 @@ As a **Registered** user I can:
 * *view tutorials* in order to *learn from content added by the site owner*.
 * *follow or un-follow other users* so their *posts are added to my feed*.
 
-
 As an **Unregistered** User I can:
 * *sign up* in order to *view site content and interact with the community*.
-
 
 #### **Site Admin**
 As a **Site Admin** I can: 
@@ -98,7 +107,7 @@ As a **Site Admin** I can:
 
 ### **Wireframes**
 
-No wireframes were required for the API. Wireframes for the front-end site can be found in the Readme.md file for that project.
+No wireframes were required for the API. Wireframes for the front-end site can be found in the [Readme](https://github.com/AndypSheridan/barbelles/blob/main/README.md) file for that project.
 
 
 <hr>
@@ -107,7 +116,7 @@ No wireframes were required for the API. Wireframes for the front-end site can b
 
 I used [DrawSQL](https://drawsql.app)​ to help visualise my database tables. See the image below:
 
-![Database Schema](docs/schema/barbelles-api-erd.png)
+![Database Schema](docs/schema/barbelles-api-schema.png)
 
 <hr>
 
@@ -233,128 +242,93 @@ The impact on the front-end is such that users with malicious intent will not be
 
 ### User Authentication
 
-All pages feature User Authentication meaning that a User must be logged in to view all site content. This encourages Users to signup as well as preventing malicious attempts to edit or delete content. If a user knows or guesses a correct URL without being logged in they will encounter this screen:
-
-![Screenshot of authentication](docs/images/user-authentication.png)
+User authentication is present on the front-end and Users are unable to access any site content unless they are logged in.
 
 
 <hr>
 
 ### **404 Page**
 
-A custom 404 page was added to catch instances when the User may have mis-typed a URL, or if content has been removed from the site. The 404 page features text displaying the content is not available and features a back button:
-
-![Screenshot of 404 page](docs/images/404.png)
-
-
-<hr>
-
-### **500 Page**
-
-A custom 500 page was added to catch instances when a potentially malicious User might try to subvert the site, for example to access personal data or delete content. In this case the page below displays and features a back button to redirect them to the previous page:
-
-![Screenshot of 500 page](docs/images/500-page.png)
+A custom 404 page for the front-end has been implemented within the scope of that project.
 
 
 <hr>
 
 ## **Future-Enhancements**
 ​
-There are a number of areas with scope for future improvement. This project has been very challenging and ultimately the project deadline was looming. There is potential to add the following:
+There are a number of areas with scope for future improvement. This project has been very challenging and ultimately the project deadline was looming. Upon discussion with the site owner, Miss Ross and I concluded the following features could be added:
 ​
-* Adding movies and games to fit into a 'Categories' drop-down menu.
-* The option for Users to add to the Authors section.
-* User images to be added to comments and book reviews.
-* A community page for User who opt in to have their profiles displayed publicly.
-* The search function to be updated to display results in the new categories.
-* Using the Google Books API to retrieve book information. I did explore this option before the inception of the project but decided against including it due to time constraints.
+* A facility to send and receive messages to and from other users in the community.
+* An option to purchase packages of extra content and individual or group training.
+* An events section which people could sign up for.
+* A calendar section outlining live tutorials and classes which people could attend virtually.
 
 <hr>
 
-## User Authentication
-
-All pages feature User Authentication meaning that a User must be logged in to view all site content. This encourages Users to signup as well as preventing malicious attempts to edit or delete content. If a user knows or guesses a correct URL without being logged in they will encounter this screen:
-
-[Screenshot of authentication](docs/images/user-authentication.png)
-
-<hr>
 
 ## **Testing Phase**
 
-The testing process, along with bugs, can be viewed [here](/TESTING.md)​
+The testing process, along with bugs, can be viewed [here](TESTING.md)​
 
 <hr>
 
 ## **Deployment**
 
-The Deployment was a fairly lengthy process so I have detailed it in a separate file. It can be found [here](/DEPLOYMENT.md)
+The Deployment was a fairly lengthy process so I have detailed it in a separate file. It can be found [here](DEPLOYMENT.md)
 
-The final deployment can be viewed [here](https://sci-fi-portal.herokuapp.com/)
+The final deployment of the API can be viewed [here](https://barbelles-api.herokuapp.com/)
 
 <hr>
 
 ## **Software and Tech**
 
-The following software and tech was used:
+The following software, libraries and tech were used:
 
-- [BootStrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) to provide key components such as the navbar and cards.
-- [Cloudinary](https://cloudinary.com) to handle static images and files as well as to offer the User a front end method of uploading images.
-- CSS to provide custom styling in addition to Bootstrap.
+### Languages
+
+- Python
+
+### Frameworks, Libraries and Programs
+
 - [Django](https://www.djangoproject.com/) as a Python framework to develop the project.
-- [Django all auth](https://django-allauth.readthedocs.io/en/latest/) used to handle user authentication.
+- [Cloudinary](https://cloudinary.com) to offer the User a front end method of uploading images.
+- [Django Rest Framework](https://www.django-rest-framework.org/) 
 - [DrawSQL](https://drawsql.app/) to develop the logic for the project.
 - [ElephantSQL](https://www.elephantsql.com/) to handle the PostgreSQL database.
-- [Figma](https://www.figma.com/) to assist with the planning phase of the project.
-- [Font Awesome](https://fontawesome.com/) to provide search, heart, profile, social media icons etc.
 - Git (Gitpod and Github) as my version control for the site.
 - [Gitpod](https://gitpod.io/) and VS Code to create, load and push my code to Github.
 - [Heroku](https://www.heroku.com/) to deploy the project.
-- HTML - The base language to create templates for the site
-- JavaScript - only used twice: for the back or cancel buttons and to populate the hidden created_by field in the add_book form.
-- [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) used to implement logic from views.py and models.py.
-- Microsoft Excel to develop the logic for the project.
-- [Optimizilla](https://imagecompressor.com/) to compress background images for the site.
-- Python - Installed packages can be found in the requirements.txt file.
-- [Shutterstock](https://www.shutterstock.com/) to source the background images for the site.
-- [Summernote](https://summernote.org/) to provide a WYSIWYG text editor in the admin area.
+- [Pillow](https://pypi.org/project/Pillow/) to add image processing capabilities.
+- [Django Rest Auth](https://django-rest-auth.readthedocs.io/en/latest/) to handle user authentication.
+- [Cors Headers](https://pypi.org/project/django-cors-headers/) for handling headers required by Cross Origin Resource Sharing.
 
-<hr>
 
-## **Media**
-
-* All book images are from [Amazon UK](https://www.amazon.co.uk/)
-* All background images came from a free trial subscription to [Shutterstock](https://www.shutterstock.com/)
-* All author images and bios are from [Wikipedia](https://www.wikipedia.org/) other than:
-  * N.K. Jemisin: bio and image from [author website](https://nkjemisin.com/)
-  * Adrian Tchaikovsky: bio taken from [author website](https://adriantchaikovsky.com/)
-​
 <hr>
 
 ## **Credits**
 
-* The colour palette for the project is from [Pinterest](https://www.pinterest.co.uk/pin/204491639320145500/).
-
-* The idea to use Cloudinary to handle static and media files came from the [Code Institute](https://codeinstitute.net/) walkthrough project: 'I Think, Therefore I Blog.
+* The idea to use Cloudinary to handle media files came from the [Code Institute](https://codeinstitute.net/) walkthrough project: 'Moments'.
 
 * The [Django Documentation](https://docs.djangoproject.com/en/4.1/) was immensely helpful in helping me gain a greater understanding of the project.
 
-* The JavaScript code used to populate the hidden created-by field in the 'add book' form came from [this](https://www.youtube.com/playlist?list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi) series of videos by John Elder on YouTube.
-
-* [This Post](https://www.section.io/engineering-education/uploading-images-to-cloudinary-from-django-application/) from Shuaib Oseni was helpful when it came to creating the front end method to upload an image to CLoudinary.
-
-* The idea to automatically create the User Profile came from [this article](https://groups.google.com/g/django-users/c/cvbuURVHN0w) on Google Groups.
+* The [Django Rest Framework Documentation](https://www.django-rest-framework.org/) also assisted in helping me gain a greater understanding of the project.
 
 * General References:
   * Stack Overflow
   * Code Institute LMS
-  * Bootstrap Documentation
-  * Jinja Documentation
   * Cloudinary Documentation
   * Geeks for Geeks
   * W3C School
-  * Course material on the CodeCademy website which helped reinforce my understanding of Python.
+  * Course material on the CodeCademy website which helped reinforce my understanding of Python, Django and DRF.
 
 <hr>
+
+## Media
+
+* Default profile image from [Code Institute](https://learn.codeinstitute.net/) walkthrough project.
+
+<hr>
+
 
 ## **Honourable mentions**
 
