@@ -5,11 +5,6 @@
   * [Sprint Notes](#sprint-notes)
     * [Sprint 1](#sprint-1)
     * [Sprint 2](#sprint-2)
-    * [Sprint 3](#sprint-3)
-    * [Sprint 4](#sprint-4)
-    * [Sprint 5](#sprint-5)
-    * [Sprint 6](#sprint-6)
-    * [Sprint 7](#sprint-7)
   * [Epics](#epics)
   * [Learning Outcomes](#learning-outcomes)
 
@@ -21,24 +16,24 @@ This was my first attempt at developing a project using Agile Methodologies and 
 
 I used a [Smartsheet](https://www.smartsheet.com) template to help plan my sprints for this project:
 
-![Sprint Planning 1](docs/agile/sprint-planning1.png)
+![Sprint Planning 1](docs/agile/barbelles-api-sprint-1.png)
 
-![Sprint Planning 2](docs/agile/sprint-planning2.png)
+![Sprint Planning 2](docs/agile/barbelles-api-sprint-2.png)
 
-I used the Github [project board](https://github.com/users/AndypSheridan/projects/2) to create and track issues and User Stories. I then integrated these within my Smartsheet template.
+I used the Github [project board](https://github.com/users/AndypSheridan/projects/3) to create and track issues and User Stories. I then integrated these within my Smartsheet template.
 
-This proved instrumental in keeping me focused on tasks and creating the necessary features for the project. As this was my first experience of using Github projects, I found that on several occasions I underestimated or overestimated the amount of time and/or tasks for each particular sprint but, on the whole, the schedule worked well. Using the Milestones feature I created Epics in Github and to these I added my User Stories, although I had already begun work on the by this point. I also created labels for the project was extremely helpful when it came to prioritising requirements for the project. 
+This proved instrumental in keeping me focused on tasks and creating the necessary features for the project. As this was only my second experience of using Github projects, I found that on several occasions I underestimated or overestimated the amount of time and/or tasks for each particular sprint but, on the whole, the schedule worked well. Using the Milestones feature I created Epics in Github and to these I added my User Stories, although I had already begun work on the by this point. I also created labels for the project was extremely helpful when it came to prioritising requirements for the project. 
 
 It has been a steep learning curve, and I felt that my plan was continually evolving rather than being something I rigidly adhered to. On reflection, I consider this to be a good thing in some respects.
 
-I have outlined a brief summary of these below:
+Sprints 1 and 2 were where I carried out all of the work on the API and I have outlined a brief summary of these below:
 
 
 <hr>
 
 ### *Sprint 1*
 
-* February 18-19 2023
+* 
   * Install django app and libraries, deploy to Heroku
 
 The purpose of this short sprint was to create a functioning Django app and immediately deploy it to Heroku with the initial libraries I intended to use. The first deployment failed due to a typo in the settings.py file but this was corrected and the app deployed as expected.

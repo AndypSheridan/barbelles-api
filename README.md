@@ -275,7 +275,7 @@ The testing process, along with bugs, can be viewed [here](TESTING.md)​
 
 ## **Deployment**
 
-The Deployment was a fairly lengthy process so I have detailed it in a separate file. It can be found [here](DEPLOYMENT.md)
+The Deployment was a fairly lengthy process so I have detailed it in a separate file. It can be found [here](/DEPLOYMENT.md)
 
 The final deployment of the API can be viewed [here](https://barbelles-api.herokuapp.com/)
 
