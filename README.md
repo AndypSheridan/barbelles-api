@@ -1,4 +1,5 @@
 # **BarBelles**
+
 ## **API Overview**
 
 The BarBelles API has been developed using the Django Rest Framework in order to serve as the back-end component to Barbelles, an online fitness community for women. The front-end, developed using ReactJS, aims to provide women with a safe and inclusive space to share their own personal fitness journeys as well as the opportunity to learn and interact with other in the community. Users can read posts by others, create, update and delete their own posts as well as follow other users. There is also the facility to add, view, edit or delete comments. Users can learn from video Tutorials added by the site owner, Kate Ross; only users with staff privileges can create, edit or delete tutorials but users can 'favourite' them and add comments. The BarBelles API provides the functionality for all of these interactions, connecting to an external Postgresql database to store images, profile data, videos, comments and followers.
