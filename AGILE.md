@@ -12,7 +12,7 @@
 
 ## **Overview**
 
-This was my first attempt at developing a project using Agile Methodologies and I encountered challenges, and some occasional confusion, along the way. The first challenge was the plethora of information I had absorbed in a short space of time. I was attempting to apply a number of Agile methods and use various different platforms to help the planning process: 
+This was my second project developed using Agile Methodologies and I encountered challenges, and some occasional confusion, along the way. The first challenge was the plethora of information I had absorbed in a short space of time. I was attempting to apply a number of Agile methods and use various different platforms to help the planning process: 
 
 I used a [Smartsheet](https://www.smartsheet.com) template to help plan six sprints for this project:
 
@@ -102,11 +102,25 @@ Presentation-related User Stories were linked to this milestone.
 ![Presentation Epic Summary](docs/agile/barbelles-epic-presentation.png)
 <br>
 
+### 6. Profiles
+
+All CRUD functionality for the profiles feature.
+
+![Profiles Epic Summary](docs/agile/barbelles-epic-profiles.png)
+<br>
+
+### 7. Tutorials
+
+All CRUD functionality for the tutorials feature.
+
+![Tutorials Epic Summary](docs/agile//barbelles-epic-tutorials.png)
+<br>
+
 <hr>
 
 ## Learning Outcomes
 
-I have enjoyed this project and it has been a wonderful learning experience. I think this first attempt using Agile methodologies has set me on a course I look forward to refining and developing continually. For future projects, I intend to better document all Developer Tasks, Sprints and User Stories within Github Projects.
+I have enjoyed this project and it has been a wonderful learning experience. I think this second attempt using Agile methodologies has set me on a course I look forward to refining and developing continually. Working on a back-end and front-end to deliver an overall project has been enormously challenging but the methodologies outlined in this file have helped keep me focused and on-track even when it has felt overwhelming at times.
 
 
 <hr>
