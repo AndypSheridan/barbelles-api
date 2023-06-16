@@ -25,4 +25,3 @@ class FavouriteDetail(generics.RetrieveDestroyAPIView):
     serializer_class = FavouriteSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Favourite.objects.all()
-
