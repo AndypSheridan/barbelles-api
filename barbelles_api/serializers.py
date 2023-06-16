@@ -9,7 +9,7 @@ class CurrentUserSerializer(UserDetailsSerializer):
     profile_is_staff = serializers.ReadOnlyField(source='profile.is_staff')
 
     class Meta(UserDetailsSerializer.Meta):
-        
+
         fields = UserDetailsSerializer.Meta.fields + (
             'profile_id', 'profile_image', 'profile_is_staff',
         )
