@@ -14,8 +14,8 @@ class TutorialList(generics.ListCreateAPIView):
         permissions.IsAuthenticatedOrReadOnly
     ]
     queryset = Tutorial.objects.annotate(
-        favourites_count = Count('favourites', distinct=True),
-        tutorial_comments_count = Count('tutorialcomment', distinct=True),
+        favourites_count=Count('favourites', distinct=True),
+        tutorial_comments_count=Count('tutorialcomment', distinct=True),
     ).order_by('-created_at')
 
     filter_backends = [
@@ -49,6 +49,6 @@ class TutorialDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TutorialSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Tutorial.objects.annotate(
-        favourites_count = Count('favourites', distinct=True),
-        tutorial_comments_count = Count('tutorialcomment', distinct=True),
+        favourites_count=Count('favourites', distinct=True),
+        tutorial_comments_count=Count('tutorialcomment', distinct=True),
     ).order_by('-created_at')

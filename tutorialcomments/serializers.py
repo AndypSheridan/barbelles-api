@@ -34,4 +34,3 @@ class TutorialCommentSerializer(serializers.ModelSerializer):
 class TutorialCommentDetailSerializer(TutorialCommentSerializer):
 
     tutorial = serializers.ReadOnlyField(source='tutorial.id')
-
