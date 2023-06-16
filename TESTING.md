@@ -75,13 +75,11 @@ The following bugs were identified during user testing:
 
 The code was validated using the [Code Institute](https://pep8ci.herokuapp.com/) Python Checker. All files passed validation and no significant issues were identified in the code. See image below.
 
-![Python validation](docs/images/barbelles-api-python-check.png)
+![Python validation](docs/validation/barbelles-api-python-check.png)
 
 This highlights an error in line length which I was unable to rectify without breaking the code. I decided against changing it.
 
-![Example 'line too long'](docs/images/barbelles-api-python-check-error.png)
-
-Again there are issues with line length but I was reluctant to change anything in this file. I surmised that as this was the default code, it was better to leave it in place.
+![Example 'line too long'](docs/validation//barbelles-api-python-check-error.png)
 
 Any further errors displayed also related line length. I was unsure how to remedy this without compromising the code within the file so overlooked these too.
 
