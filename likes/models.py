@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from posts.models import Post
 from django.db import models
+from posts.models import Post
 
 
 class Like(models.Model):
