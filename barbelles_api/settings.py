@@ -45,7 +45,9 @@ ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost',
     '8000-andypsherid-barbellesap-x5uuhcsq1t2.ws-eu98.gitpod.io',
-    '8000-andypsherid-barbellesap-x5uuhcsq1t2.ws-eu99.gitpod.io'
+    '8000-andypsherid-barbellesap-x5uuhcsq1t2.ws-eu99.gitpod.io',
+    '8000-andypsherid-barbellesap-x5uuhcsq1t2.ws-eu100.gitpod.io',
+    
 ]
 
 
