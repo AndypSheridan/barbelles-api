@@ -121,17 +121,6 @@ I used [DrawSQL](https://drawsql.app)​ to help visualise my database tables. S
 
 <hr>
 
-### **Colour Scheme:**
-​
-No color scheme was required for this project. The color scheme for the front-end can be found in the Readme file for that project.
-
-<hr>​
-
-#### **Typography**
-​
-Typography was not required for this project. The typography for the front-end can be found in the Readme file for that project.
-
-​<hr>
 
 ## Agile Development
 
@@ -235,8 +224,6 @@ The detail of each follow can be viewed in more detail by adding its id to the U
 Permission checks are run through the use of the IsAuthenticated class which will grant or deny access to different parts of the API. In the case of this API, it essentially means users cannot edit or delete posts, comments, tutorials, likes or followers that are not their own. This adds a fairly robust level of security and will return a '401 Unauthorized' or '403 Forbidden' response.
 
 The impact on the front-end is such that users with malicious intent will not be able to access content which they shouldn't.
-
-![Screenshot of delete page](docs/images/delete-book.png)
 
 
 <hr>
