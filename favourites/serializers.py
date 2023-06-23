@@ -4,7 +4,9 @@ from .models import Favourite
 
 
 class FavouriteSerializer(serializers.ModelSerializer):
-
+    """
+    Favourite Model serializer.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
@@ -14,6 +16,10 @@ class FavouriteSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
+        """
+        Displays error message if the user tries 
+        to like the same post more than once.
+        """
         try:
             return super().create(validated_data)
         except IntegrityError:
