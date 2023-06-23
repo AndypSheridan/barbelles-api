@@ -3,8 +3,11 @@ from likes.models import Like
 from .models import Post
 
 
+# Class adapted from CI DRF-API walkthrough.
 class PostSerializer(serializers.ModelSerializer):
-
+    """
+    Serializer for Post Model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -14,6 +17,9 @@ class PostSerializer(serializers.ModelSerializer):
     comments_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
+        """
+        Restricts image sizes.
+        """
         if value.size > 1024 * 1024 * 3:
             raise serializers.ValidationError(
                 'Image size larger than 3MB!'
@@ -29,10 +35,16 @@ class PostSerializer(serializers.ModelSerializer):
         return value
 
     def get_is_owner(self, obj):
+        """
+        Return correct user.
+        """
         request = self.context['request']
         return request.user == obj.owner
 
     def get_like_id(self, obj):
+        """
+        Return total number of likes on post.
+        """
         user = self.context['request'].user
         if user.is_authenticated:
             like = Like.objects.filter(
@@ -42,6 +54,9 @@ class PostSerializer(serializers.ModelSerializer):
         return None
 
     class Meta:
+        """
+        Fields to be displayed.
+        """
         model = Post
         fields = [
             'id', 'owner', 'profile_id', 'profile_image',
@@ -49,4 +64,3 @@ class PostSerializer(serializers.ModelSerializer):
             'created_at', 'updated_at', 'is_owner',
             'like_id', 'likes_count', 'comments_count',
         ]
-
