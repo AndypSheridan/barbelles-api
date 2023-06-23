@@ -10,6 +10,9 @@ class FavouriteSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
+        """
+        Fields to be displayed.
+        """
         model = Favourite
         fields = [
             'id', 'owner', 'tutorial', 'created_at',
