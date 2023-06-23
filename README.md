@@ -218,6 +218,12 @@ The detail of each follow can be viewed in more detail by adding its id to the U
 
 <hr>
 
+### **Pagination**
+
+The API uses pagination to prevent too much data being loaded at once. On the back-end, there are links to view the next page whilst on the front-end, the extra data is loaded via the infinite scroll functionality.
+
+<hr>
+
 ## **Defensive Design**
 ### **Permissions**
 
