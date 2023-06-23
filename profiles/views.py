@@ -1,9 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from barbelles_api.permissions import IsOwnerOrReadOnly
 from rest_framework import generics, filters
-from .serializers import ProfileSerializer
 from django.db.models import Count
-from django.http import Http404
+from barbelles_api.permissions import IsOwnerOrReadOnly
+from .serializers import ProfileSerializer
 from .models import Profile
 
 
