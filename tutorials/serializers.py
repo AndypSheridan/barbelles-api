@@ -1,10 +1,13 @@
-from favourites.models import Favourite
 from rest_framework import serializers
+from favourites.models import Favourite
 from .models import Tutorial
 
 
+# Adapted from CI DRF-API walkthrough.
 class TutorialSerializer(serializers.ModelSerializer):
-
+    """
+    Serializer for Tutorial Model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -14,10 +17,16 @@ class TutorialSerializer(serializers.ModelSerializer):
     tutorial_comments_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
+        """
+        Return correct user.
+        """
         request = self.context['request']
         return request.user == obj.owner
 
     def get_favourite_id(self, obj):
+        """
+        Return total favourites.
+        """
         user = self.context['request'].user
         if user.is_authenticated:
             favourite = Favourite.objects.filter(
@@ -27,6 +36,9 @@ class TutorialSerializer(serializers.ModelSerializer):
         return None
 
     class Meta:
+        """
+        Fields to display.
+        """
         model = Tutorial
         fields = [
             'id', 'owner', 'profile_id', 'profile_image',

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.db import IntegrityError
 from .models import Favourite
 
-
+# Class adapted from CI DRF-API walkthrough.
 class FavouriteSerializer(serializers.ModelSerializer):
     """
     Favourite Model serializer.
