@@ -4,7 +4,10 @@ from .models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-
+    """
+    Serializer for Profile model.
+    Provides readability to profile data in API.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     following_id = serializers.SerializerMethodField()
@@ -13,10 +16,16 @@ class ProfileSerializer(serializers.ModelSerializer):
     following_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
+        """
+        Links user to User profile.
+        """
         request = self.context['request']
         return request.user == obj.owner
 
     def get_following_id(self, obj):
+        """
+        Following count for individual user.
+        """
         user = self.context['request'].user
         if user.is_authenticated:
             following = Follower.objects.filter(
@@ -26,6 +35,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         return None
 
     class Meta:
+        """
+        List of Profile Model fields to display.
+        """
         model = Profile
         fields = [
             'id', 'owner', 'name', 'bio', 'image',
