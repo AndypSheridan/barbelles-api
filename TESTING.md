@@ -25,17 +25,11 @@ At the time of writing, this is the largest project I had undertaken so I felt t
 ​
 The following bugs were identified during user testing:
 
-*The two most significant bugs encountered were in relation the database:*
-
-1.
-
 * Bug 🐞 -  Database became corrupted and would no longer function as intended, failing to load data.
 * Cause ⚒️ - Code Institute Tutor Support suggested this happens from time to time and may have arisen from adjusting the Tutorials model.
 * Resolution ✅ - Delete all migration files other than the __init__.py file.
 
 <br>
-
-2.
 
 * Bug 🐞 - When connected to the front end, the follow functionality ceased to work as intended.
 * Cause ⚒️ - There was no error in the code. Again, I was advised the database had somehow become corrupted.
