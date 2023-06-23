@@ -1,16 +1,16 @@
 from rest_framework import permissions, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.response import Response
 from django.db.models import Count
-from django.http import Http404
-from rest_framework.views import APIView
 from barbelles_api.permissions import IsOwnerOrReadOnly
 from .serializers import PostSerializer
 from .models import Post
 
 
+# Class adapted from CI DRF-API walkthrough.
 class PostList(generics.ListCreateAPIView):
-
+    """
+    Retrieve and create new posts.
+    """
     serializer_class = PostSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
@@ -47,11 +47,18 @@ class PostList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
+        """
+        If user is logged in, saves
+        new post to database.
+        """
         serializer.save(owner=self.request.user)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-
+    """
+    Function to retrieve, edit or
+    delete post if owner.
+    """
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Post.objects.annotate(
