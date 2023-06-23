@@ -308,6 +308,8 @@ The following software, libraries and tech were used:
 
 ## **Credits**
 
+* The creation of this API database was assisted by the Code Institute DRF-API walkthrough. Code has been credited.
+
 * The idea to use Cloudinary to handle media files came from the [Code Institute](https://codeinstitute.net/) walkthrough project: 'Moments'.
 
 * The [Django Documentation](https://docs.djangoproject.com/en/4.1/) was immensely helpful in helping me gain a greater understanding of the project.
