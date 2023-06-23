@@ -3,8 +3,11 @@ from rest_framework import serializers
 from .models import TutorialComment
 
 
+# Class adapted from CI DRF-API walkthrough.
 class TutorialCommentSerializer(serializers.ModelSerializer):
-
+    """
+    Serializer for TutorialComment Model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
@@ -13,16 +16,28 @@ class TutorialCommentSerializer(serializers.ModelSerializer):
     updated_at = serializers.SerializerMethodField()
 
     def get_created_at(self, obj):
+        """
+        Display time elapsed since comment created.
+        """
         return naturaltime(obj.created_at)
 
     def get_updated_at(self, obj):
+        """
+        Display time since comment edited.
+        """
         return naturaltime(obj.updated_at)
 
     def get_is_owner(self, obj):
+        """
+        Link comment to user.
+        """
         request = self.context['request']
         return request.user == obj.owner
 
     class Meta:
+        """
+        Fields to display.
+        """
         model = TutorialComment
         fields = [
             'id', 'owner', 'content', 'profile_id',
@@ -32,5 +47,7 @@ class TutorialCommentSerializer(serializers.ModelSerializer):
 
 
 class TutorialCommentDetailSerializer(TutorialCommentSerializer):
-
+    """
+    Serializer for detail view.
+    """
     tutorial = serializers.ReadOnlyField(source='tutorial.id')
