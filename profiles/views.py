@@ -7,7 +7,10 @@ from .models import Profile
 
 
 class ProfileList(generics.ListAPIView):
-
+    """
+    Serializer for Profile Model.
+    Lists all created profiles.
+    """
     serializer_class = ProfileSerializer
     queryset = Profile.objects.annotate(
         posts_count=Count('owner__post', distinct=True),
@@ -35,9 +38,11 @@ class ProfileList(generics.ListAPIView):
         'owner__followed__created_at',
     ]
 
-
+# Class based on CI DRF-API walkthrough.
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-
+    """
+    Retrieve or update Profile fields if Owner.
+    """
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
