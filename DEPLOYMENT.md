@@ -314,6 +314,14 @@ I used **gitpod** for this project:
     git commit -m "Initial deployment"
     git push`
 
+1. **FINAL DEPLOYMENT**
+    In *settings.py*
+    - Set `DEBUG = False`
+
+    In *Heroku*
+    - Remove 'disable_collectstatic' variable
+    - Select *Deploy branch*
+
 
 ### Cloning on a Local machine or Via Gitpod Terminal
 
